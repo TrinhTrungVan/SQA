@@ -3,22 +3,6 @@ const { suite } = require('selenium-webdriver/testing')
 const assert = require('assert')
 require('chromedriver')
 
-// const test_case = async () => {
-//     const driver = await new Builder().forBrowser('chrome').build()
-//     await driver.get('http://localhost:3000/product/create')
-
-//     await driver.findElement(By.name('productCode')).sendKeys('PR001', Key.RETURN)
-//     await driver.findElement(By.name('create_product')).click()
-//     await driver.manage().setTimeouts({ implicit: 500 })
-//     const notity = await driver.findElement(By.name('notify'))
-//     const message = await notity.getText()
-//     console.log('notify', message)
-//     assert.equal(message, 'Vui lòng điền đầy đủ các trường.')
-// }
-
-// test_case()
-// test_case1()
-
 suite(
     function (env) {
         describe('First script', function () {
@@ -30,26 +14,154 @@ suite(
 
             after(async () => await driver.quit())
 
-            it('Kiểm tra thêm mặt hàng', async function () {
-                await driver.get('http://localhost:3000/product/create')
+            // it('Kiểm tra thêm mặt hàng thành công', async function () {
+            //     await driver.get('http://localhost:3000/product/create')
 
-                await driver.findElement(By.name('productCode')).sendKeys('PR001', Key.RETURN)
-                await driver.findElement(By.name('create_product')).click()
+            //     await driver.findElement(By.name('productCode')).sendKeys('SP001', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('productName'))
+            //         .sendKeys('Nhà giả kim 1', Key.RETURN)
+            //     await driver.findElement(By.name('author')).sendKeys('Paulo Coelho', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('publisher'))
+            //         .sendKeys('Editora Rocco Ltda.', Key.RETURN)
+            //     await driver.findElement(By.name('publishing_year')).sendKeys('1988', Key.RETURN)
+            //     await driver.findElement(By.name('category')).sendKeys('Phiêu lưu', Key.RETURN)
+            //     await driver.findElement(By.name('pages')).sendKeys('225', Key.RETURN)
+            //     await driver.findElement(By.name('price')).sendKeys('142000', Key.RETURN)
+
+            //     await driver.findElement(By.name('create_product')).click()
+            //     await driver.manage().setTimeouts({ implicit: 500 })
+            //     const notity = await driver.findElement(By.name('notify'))
+            //     const message = await notity.getText()
+            //     assert.equal(message, 'Thêm mặt hàng thành công')
+            // })
+
+            // it('Kiểm tra thêm mặt hàng thất bại', async function () {
+            //     await driver.get('http://localhost:3000/product/create')
+
+            //     await driver.findElement(By.name('productCode')).sendKeys('SP001', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('productName'))
+            //         .sendKeys('Nhà giả kim 1', Key.RETURN)
+            //     await driver.findElement(By.name('author')).sendKeys('Paulo Coelho', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('publisher'))
+            //         .sendKeys('Editora Rocco Ltda.', Key.RETURN)
+            //     await driver.findElement(By.name('publishing_year')).sendKeys('1988', Key.RETURN)
+            //     await driver.findElement(By.name('category')).sendKeys('Phiêu lưu', Key.RETURN)
+            //     await driver.findElement(By.name('pages')).sendKeys('225', Key.RETURN)
+
+            //     await driver.findElement(By.name('create_product')).click()
+            //     await driver.manage().setTimeouts({ implicit: 500 })
+            //     const notity = await driver.findElement(By.name('notify'))
+            //     const message = await notity.getText()
+            //     assert.equal(message, 'Vui lòng điền đầy đủ các trường.')
+            // })
+
+            // it('Kiểm tra thêm mặt hàng thất bại', async function () {
+            //     await driver.get('http://localhost:3000/product/create')
+
+            //     await driver.findElement(By.name('productCode')).sendKeys('SP001', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('productName'))
+            //         .sendKeys('Nhà giả kim 1', Key.RETURN)
+            //     await driver.findElement(By.name('author')).sendKeys('Paulo Coelho', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('publisher'))
+            //         .sendKeys('Editora Rocco Ltda.', Key.RETURN)
+            //     await driver.findElement(By.name('publishing_year')).sendKeys('1988', Key.RETURN)
+            //     await driver.findElement(By.name('category')).sendKeys('Phiêu lưu', Key.RETURN)
+            //     await driver.findElement(By.name('pages')).sendKeys('225', Key.RETURN)
+            //     await driver.findElement(By.name('price')).sendKeys('142000', Key.RETURN)
+
+            //     await driver.findElement(By.name('create_product')).click()
+            //     await driver.manage().setTimeouts({ implicit: 500 })
+            //     const notity = await driver.findElement(By.name('notify'))
+            //     const message = await notity.getText()
+            //     assert.equal(message, 'Mã sản phẩm đã tồn tại!')
+            // })
+
+            // it('Kiểm tra thêm mặt hàng thất bại', async function () {
+            //     await driver.get('http://localhost:3000/product/create')
+
+            //     await driver.findElement(By.name('productCode')).sendKeys('SP001', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('productName'))
+            //         .sendKeys('Nhà giả kim 1', Key.RETURN)
+            //     await driver.findElement(By.name('author')).sendKeys('Paulo Coelho', Key.RETURN)
+            //     await driver
+            //         .findElement(By.name('publisher'))
+            //         .sendKeys('Editora Rocco Ltda.', Key.RETURN)
+            //     await driver.findElement(By.name('publishing_year')).sendKeys('1988', Key.RETURN)
+            //     await driver.findElement(By.name('category')).sendKeys('Phiêu lưu', Key.RETURN)
+            //     await driver.findElement(By.name('pages')).sendKeys('225', Key.RETURN)
+            //     await driver.findElement(By.name('price')).sendKeys('abc', Key.RETURN)
+
+            //     await driver.findElement(By.name('create_product')).click()
+            //     await driver.manage().setTimeouts({ implicit: 500 })
+            //     const notity = await driver.findElement(By.name('notify'))
+            //     const message = await notity.getText()
+            //     assert.equal(message, 'Giá mặt hàng phải là số')
+            // })
+
+            it('Kiểm tra thêm nhà cung cấp thành công', async function () {
+                await driver.get('http://localhost:3000/supplier/create')
+
+                await driver.findElement(By.name('supplierCode')).sendKeys('SU001', Key.RETURN)
+                await driver.findElement(By.name('supplierName')).sendKeys('TrungVan', Key.RETURN)
+                await driver.findElement(By.name('address')).sendKeys('HaNoi', Key.RETURN)
+                await driver.findElement(By.name('phone')).sendKeys('0338886754', Key.RETURN)
+
+                await driver.findElement(By.name('create_supplier')).click()
+                await driver.manage().setTimeouts({ implicit: 500 })
+                const notity = await driver.findElement(By.name('notify'))
+                const message = await notity.getText()
+                assert.equal(message, 'Thêm nhà cung cấp thành công')
+            })
+
+            it('Kiểm tra thêm nhà cung cấp thất bại', async function () {
+                await driver.get('http://localhost:3000/supplier/create')
+
+                await driver.findElement(By.name('supplierCode')).sendKeys('SU001', Key.RETURN)
+                await driver.findElement(By.name('supplierName')).sendKeys('TrungVan', Key.RETURN)
+                await driver.findElement(By.name('address')).sendKeys('HaNoi', Key.RETURN)
+                await driver.findElement(By.name('phone')).sendKeys('0338886754', Key.RETURN)
+
+                await driver.findElement(By.name('create_supplier')).click()
+                await driver.manage().setTimeouts({ implicit: 500 })
+                const notity = await driver.findElement(By.name('notify'))
+                const message = await notity.getText()
+                assert.equal(message, 'Mã nhà cung cấp đã tồn tại')
+            })
+
+            it('Kiểm tra thêm nhà cung cấp thất bại', async function () {
+                await driver.get('http://localhost:3000/supplier/create')
+
+                await driver.findElement(By.name('supplierCode')).sendKeys('SU001', Key.RETURN)
+                await driver.findElement(By.name('address')).sendKeys('HaNoi', Key.RETURN)
+                await driver.findElement(By.name('phone')).sendKeys('0338886754', Key.RETURN)
+
+                await driver.findElement(By.name('create_supplier')).click()
                 await driver.manage().setTimeouts({ implicit: 500 })
                 const notity = await driver.findElement(By.name('notify'))
                 const message = await notity.getText()
                 assert.equal(message, 'Vui lòng điền đầy đủ các trường.')
-                // await driver.get('https://www.selenium.dev/selenium/web/web-form.html');
-                // let title = await driver.getTitle();
-                // assert.equal("Web form", title);
-                // await driver.manage().setTimeouts({implicit: 500});
-                // let textBox = await driver.findElement(By.name('my-text'));
-                // let submitButton = await driver.findElement(By.css('button'));
-                // await textBox.sendKeys('Selenium');
-                // await submitButton.click();
-                // let message = await driver.findElement(By.id('message'));
-                // let value = await message.getText();
-                // assert.equal("Received!", value);
+            })
+
+            it('Kiểm tra thêm nhà cung cấp thất bại', async function () {
+                await driver.get('http://localhost:3000/supplier/create')
+
+                await driver.findElement(By.name('supplierCode')).sendKeys('SU001', Key.RETURN)
+                await driver.findElement(By.name('supplierName')).sendKeys('TrungVan', Key.RETURN)
+                await driver.findElement(By.name('address')).sendKeys('HaNoi', Key.RETURN)
+                await driver.findElement(By.name('phone')).sendKeys('abc', Key.RETURN)
+
+                await driver.findElement(By.name('create_supplier')).click()
+                await driver.manage().setTimeouts({ implicit: 500 })
+                const notity = await driver.findElement(By.name('notify'))
+                const message = await notity.getText()
+                assert.equal(message, 'Số điện thoại sai định dạng')
             })
         })
     },

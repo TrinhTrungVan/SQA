@@ -41,7 +41,7 @@ public class ProductController {
         Product foundProducts = repository.findByProductCode(newProduct.getProductCode().trim());
         if (foundProducts != null) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("Failed", "ProductCode đã tồn tại!", "")
+                    new ResponseObject("Failed", "Mã sản phẩm đã tồn tại!", "")
             );
         }
         return ResponseEntity.status(HttpStatus.OK).body(
@@ -101,7 +101,11 @@ public class ProductController {
 
     @GetMapping("/search")
     public List<Product> searchProducts(@RequestParam String name) {
-        return repository.findByProductNameContaining(name);
+        List<Product> foundProductsByCode = repository.findByProductCodeContaining(name);
+        List<Product> foundProductsByName = repository.findByProductNameContaining(name);
+        if(name.equals("")) return foundProductsByCode;
+        foundProductsByCode.addAll(foundProductsByName);
+        return foundProductsByCode;
     }
 }
 

@@ -31,6 +31,7 @@ const CreateProduct = () => {
     const handleOk = () => {
         setIsModalOpen(false)
         setModalMessage('')
+        navigate('/product')
     }
 
     const handleCreateProduct = async (e) => {
@@ -50,7 +51,6 @@ const CreateProduct = () => {
         } else {
             setModalMessage('Thêm mặt hàng thành công!')
             setProductData(initData)
-            navigate('/product')
         }
         setIsModalOpen(true)
     }
@@ -122,7 +122,7 @@ const CreateProduct = () => {
                             className="mt-8"
                             size="large"
                             name="publishing_year"
-                            value={productData.publishingYear}
+                            value={productData.publishing_year}
                             onChange={handleChangeInput}
                             style={{ marginTop: 0 }}
                         />

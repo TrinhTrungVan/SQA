@@ -1,32 +1,32 @@
-import { Button, Col, Input, Modal, Row, Space, Typography } from "antd";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import productServices from "../api/services/productServices";
-import ProductItem from "../components/ProductItem";
+import { Button, Col, Input, Modal, Row, Space, Typography } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
+import productServices from '../api/services/productServices'
+import ProductItem from '../components/ProductItem'
 
 const ProductManage = () => {
-    const [products, setProducts] = useState([]);
-    const [searchValue, setSearchValue] = useState("");
-    const navigate = useNavigate();
+    const [products, setProducts] = useState([])
+    const [searchValue, setSearchValue] = useState('')
+    const navigate = useNavigate()
 
     const handleSearch = async () => {
-        const res = await productServices.searchProduct(searchValue);
-        setProducts(res);
-    };
+        const res = await productServices.searchProduct(searchValue)
+        setProducts(res)
+    }
     const handleCancelSearch = async () => {
-        setSearchValue("");
-        const res = await productServices.searchProduct("");
-        setProducts(res);
-    };
+        setSearchValue('')
+        const res = await productServices.searchProduct('')
+        setProducts(res)
+    }
 
     useEffect(() => {
         const getProducts = async () => {
-            const res = await productServices.getProducts();
-            setProducts(res);
-        };
-        getProducts();
-    }, []);
+            const res = await productServices.getProducts()
+            setProducts(res)
+        }
+        getProducts()
+    }, [])
 
     return (
         <>
@@ -37,14 +37,14 @@ const ProductManage = () => {
                         style={{
                             width: 600,
                             margin: 16,
-                            display: "flex",
-                            alignItems: "center",
-                            position: "relative",
+                            display: 'flex',
+                            alignItems: 'center',
+                            position: 'relative',
                         }}
                     >
                         <Input
-                            defaultValue=''
-                            placeholder='Nhập tên sản phẩm cần tìm'
+                            defaultValue=""
+                            placeholder="Nhập mã sản phẩm hoặc tên sản phẩm cần tìm"
                             style={{
                                 height: 40,
                             }}
@@ -52,7 +52,7 @@ const ProductManage = () => {
                             onChange={(e) => setSearchValue(e.target.value)}
                         />
                         <Button
-                            type='primary'
+                            type="primary"
                             style={{
                                 height: 40,
                                 borderTopRightRadius: 8,
@@ -63,59 +63,59 @@ const ProductManage = () => {
                             Tìm kiếm
                         </Button>
                         <ButtonClear onClick={handleCancelSearch}>
-                            <i className='fa-solid fa-circle-xmark'></i>
+                            <i className="fa-solid fa-circle-xmark"></i>
                         </ButtonClear>
                     </Space.Compact>
-                    <Button type='primary' size='large' onClick={() => navigate("/product/create")}>
+                    <Button type="primary" size="large" onClick={() => navigate('/product/create')}>
                         Thêm mặt hàng
                     </Button>
                 </StyledDiv>
-                <div style={{ borderRadius: 6, overflow: "hidden", border: "1px solid #ccc" }}>
+                <div style={{ borderRadius: 6, overflow: 'hidden', border: '1px solid #ccc' }}>
                     <Row
                         style={{
-                            backgroundColor: "#DAEAF1",
+                            backgroundColor: '#DAEAF1',
                             height: 44,
                             width: 1200,
                             borderTopLeftRadius: 6,
                             borderTopRightRadius: 6,
-                            borderBottom: "1px solid #ccc",
+                            borderBottom: '1px solid #ccc',
                         }}
                     >
-                        <Col className='center' span={2}>
+                        <Col className="center" span={2}>
                             <Typography.Title level={5}>Mã sản phẩm</Typography.Title>
                         </Col>
-                        <Col className='center' span={6}>
+                        <Col className="center" span={6}>
                             <Typography.Title level={5}>Tên sản phẩm</Typography.Title>
                         </Col>
-                        <Col className='center' span={3}>
+                        <Col className="center" span={3}>
                             <Typography.Title level={5}>Tác giả</Typography.Title>
                         </Col>
-                        <Col className='center' span={3}>
+                        <Col className="center" span={3}>
                             <Typography.Title level={5}>Nhà xuất bản</Typography.Title>
                         </Col>
-                        <Col className='center' span={3}>
+                        <Col className="center" span={3}>
                             <Typography.Title level={5}>Năm xuất bản</Typography.Title>
                         </Col>
-                        <Col className='center' span={2}>
+                        <Col className="center" span={2}>
                             <Typography.Title level={5}>Thể loại</Typography.Title>
                         </Col>
-                        <Col className='center' span={2}>
+                        <Col className="center" span={2}>
                             <Typography.Title level={5}>Số trang</Typography.Title>
                         </Col>
-                        <Col className='center' span={3}>
+                        <Col className="center" span={3}>
                             <Typography.Title level={5}>Giá</Typography.Title>
                         </Col>
                     </Row>
                     {products.map((item, index) => {
-                        return <ProductItem data={item} key={index} />;
+                        return <ProductItem data={item} key={index} />
                     })}
                 </div>
             </Container>
         </>
-    );
-};
+    )
+}
 
-export default ProductManage;
+export default ProductManage
 
 const Container = styled.div`
     display: flex;
@@ -123,7 +123,7 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     width: 1200px;
-`;
+`
 
 const StyledDiv = styled.div`
     display: flex;
@@ -131,7 +131,7 @@ const StyledDiv = styled.div`
     align-items: center;
     margin: 32px 0px;
     width: 1200px;
-`;
+`
 
 export const StyledForm = styled.form`
     text-align: center;
@@ -139,21 +139,21 @@ export const StyledForm = styled.form`
         padding-right: 8px;
         color: rgba(0, 0, 0, 0.6);
     }
-`;
+`
 
 export const StyledHeading = styled.div`
     text-align: center;
     color: rgb(77, 76, 125);
     font-size: 28px;
     font-weight: 500;
-`;
+`
 
 export const InputGroup = styled.div`
     display: flex;
     justify-content: left;
     flex-direction: column;
     margin-top: 8px;
-`;
+`
 
 const ButtonClear = styled.div`
     position: absolute;
@@ -167,4 +167,4 @@ const ButtonClear = styled.div`
     &:hover {
         opacity: 0.4;
     }
-`;
+`

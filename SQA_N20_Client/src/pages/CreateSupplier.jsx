@@ -110,6 +110,9 @@ const CreateSupplier = () => {
                             style={{ marginTop: 0 }}
                         />
                     </InputGroup>
+                    <Typography.Text name="notify" type="danger">
+                        {modalMessage}
+                    </Typography.Text>
                     <ButtonGroup>
                         <Button key="back" size="large" onClick={() => navigate('/supplier')}>
                             Quay lại
@@ -118,6 +121,7 @@ const CreateSupplier = () => {
                             key="submit"
                             type="primary"
                             size="large"
+                            name="create_supplier"
                             onClick={handleCreateSupplier}
                         >
                             {loading ? <Loading /> : 'Thêm nhà cung cấp'}

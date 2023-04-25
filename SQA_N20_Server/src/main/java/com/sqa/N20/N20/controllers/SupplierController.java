@@ -41,7 +41,7 @@ public class SupplierController {
         Supplier foundSupplier = repository.findBySupplierCode(newSupplier.getSupplierCode().trim());
         if(foundSupplier != null){
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-                    new ResponseObject("Failed", "SupplierCode đã tồn tại", "")
+                    new ResponseObject("Failed", "Mã nhà cung cấp đã tồn tại", "")
             );
         }
         return ResponseEntity.status(HttpStatus.OK).body(
@@ -97,6 +97,10 @@ public class SupplierController {
 
     @GetMapping("/search")
     public List<Supplier> searchSuppliers(@RequestParam String name) {
-        return repository.findBySupplierNameContaining(name);
+        List<Supplier> l1 = repository.findBySupplierNameContaining(name);
+        List<Supplier> l2 = repository.findBySupplierCodeContaining(name);
+        if(name.equals("")) return l1;
+        l1.addAll(l2);
+        return l1;
     }
 }
