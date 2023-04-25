@@ -17,17 +17,17 @@ import java.util.Optional;
 public class ProductController {
 
     @Autowired
-    private ProductRepository repository; // Đối tượng sẽ được tạo ra 1 lần ngay sau khi app được tạo
+    public ProductRepository repository; // Đối tượng sẽ được tạo ra 1 lần ngay sau khi app được tạo
 
     @GetMapping("")
-    List<Product> getAllProducts() {
+    public List<Product> getAllProducts() {
         return repository.findAll(); // Get all Products
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ResponseObject> getProductById(@PathVariable Long id) {
         Optional<Product> foundProduct = repository.findById(id);
-        return foundProduct != null ?
+        return foundProduct != null && foundProduct.isPresent()?
                 ResponseEntity.status(HttpStatus.OK).body(
                         new ResponseObject("OK", "Query thành công!", foundProduct)
                 ) :
@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    ResponseEntity<ResponseObject> createProduct(@RequestBody Product newProduct) {
+    public ResponseEntity<ResponseObject> createProduct(@RequestBody Product newProduct) {
         Product foundProducts = repository.findByProductCode(newProduct.getProductCode().trim());
         if (foundProducts != null) {
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
+    public ResponseEntity<ResponseObject> updateProduct(@RequestBody Product newProduct, @PathVariable Long id) {
         Product foundProducts = repository.findById(id).orElse(null);
         if (foundProducts == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
@@ -79,7 +79,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<ResponseObject> deleteProduct(@PathVariable Long id) {
         try{
             Product foundProducts = repository.findById(id).orElse(null);
             if (foundProducts == null) {

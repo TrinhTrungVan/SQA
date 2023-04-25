@@ -20,14 +20,14 @@ public class SupplierController {
     private SupplierRepository repository; // Đối tượng sẽ được tạo ra 1 lần ngay sau khi app được tạo
 
     @GetMapping("")
-    List<Supplier> getAllSuppliers() {
+    public List<Supplier> getAllSuppliers() {
         return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> getProductById(@PathVariable Long id){
-        Supplier foundSupplier = repository.findById(id).orElse(null);
-        return foundSupplier != null ?
+    public ResponseEntity<ResponseObject> getProductById(@PathVariable Long id){
+        Optional<Supplier> foundSupplier = repository.findById(id);
+        return foundSupplier != null && foundSupplier.isPresent() ?
                 ResponseEntity.status(HttpStatus.OK).body(
                         new ResponseObject("OK", "Query nhà cung cấp thành công", foundSupplier)
                 ):
@@ -37,7 +37,7 @@ public class SupplierController {
     }
 
     @PostMapping("/create")
-    ResponseEntity<ResponseObject> createProduct(@RequestBody Supplier newSupplier){
+    public ResponseEntity<ResponseObject> createProduct(@RequestBody Supplier newSupplier){
         Supplier foundSupplier = repository.findBySupplierCode(newSupplier.getSupplierCode().trim());
         if(foundSupplier != null){
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
@@ -50,7 +50,7 @@ public class SupplierController {
     }
 
     @PutMapping("/{id}")
-    ResponseEntity<ResponseObject> updateSupplier(@RequestBody Supplier newSupplier, @PathVariable Long id) {
+    public ResponseEntity<ResponseObject> updateSupplier(@RequestBody Supplier newSupplier, @PathVariable Long id) {
         Supplier foundSupplier = repository.findById(id).orElse(null);
         if (foundSupplier == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
@@ -75,7 +75,7 @@ public class SupplierController {
     }
 
     @DeleteMapping("/{id}")
-    ResponseEntity<ResponseObject> deleteSupplier(@PathVariable Long id) {
+    public ResponseEntity<ResponseObject> deleteSupplier(@PathVariable Long id) {
         try{
             Supplier foundSupplier = repository.findById(id).orElse(null);
             if (foundSupplier == null) {

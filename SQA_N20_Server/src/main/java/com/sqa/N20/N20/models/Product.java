@@ -45,6 +45,9 @@ public class Product {
         this.pages = pages;
     }
 
+    public Product(long l, String nhàGiảKim, String pauloCoelho, String nxb, int i, String phiêuLưu, int i1, int i2) {
+    }
+
     public Long getId() {
         return id;
     }

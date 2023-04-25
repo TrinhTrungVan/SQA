@@ -26,12 +26,12 @@ public class PurchaseOrderController {
     private ProductRepository productRepository;
 
     @GetMapping("")
-    List<PurchaseOrder> getAllPurchaseOrders() {
+    public List<PurchaseOrder> getAllPurchaseOrders() {
         return purchaseOrderRepository.findAll(); // Get all Products
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<ResponseObject> getPurchaseOrderById(@PathVariable Long id) {
+    public ResponseEntity<ResponseObject> getPurchaseOrderById(@PathVariable Long id) {
         Optional<PurchaseOrder> foundPurchaseOrder = purchaseOrderRepository.findById(id);
         return foundPurchaseOrder != null ?
                 ResponseEntity.status(HttpStatus.OK).body(
@@ -43,7 +43,7 @@ public class PurchaseOrderController {
     }
 
     @PostMapping("/create")
-    ResponseEntity<ResponseObject> createProduct(@RequestBody PurchaseOrder newPurchaseOrder) {
+    public ResponseEntity<ResponseObject> createPurchaseOrders(@RequestBody PurchaseOrder newPurchaseOrder) {
         PurchaseOrder foundPurchaseOrder = purchaseOrderRepository.findByPurchaseCode(newPurchaseOrder.getPurchaseCode().trim());
         if(foundPurchaseOrder != null){
             return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
